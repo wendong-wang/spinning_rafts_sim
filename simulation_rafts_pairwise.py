@@ -451,20 +451,25 @@ radiusOfRaft = 1.5e-4  # unit: m
 
 magneticDipoleCCDistances = magneticDipoleEEDistances + radiusOfRaft * 2  # unit: m
 
+# magDpEnergy = np.zeros((len(magneticDipoleEEDistances), len(orientationAngles)))  # unit: J
 magDpForceOnAxis = np.zeros((len(magneticDipoleEEDistances), len(orientationAngles)))  # unit: N
 magDpForceOffAxis = np.zeros((len(magneticDipoleEEDistances), len(orientationAngles)))  # unit: N
 magDpTorque = np.zeros((len(magneticDipoleEEDistances), len(orientationAngles)))  # unit: N.m
 
 for index, d in enumerate(magneticDipoleCCDistances):
-    #    magneticEnergyDistancesAsRows[index,:] = miu0 * magneticMomentOfOneRaft**2 * (1 - 3 * (np.cos(orientationAnglesInRad) ** 2)) / (4 * np.pi * d**3)
-    magDpForceOnAxis[index, :] = 3 * miu0 * magneticMomentOfOneRaft ** 2 * (
-            1 - 3 * (np.cos(orientationAnglesInRad) ** 2)) / (4 * np.pi * d ** 4)
-    magDpForceOffAxis[index, :] = 3 * miu0 * magneticMomentOfOneRaft ** 2 * (
-            2 * np.cos(orientationAnglesInRad) * np.sin(orientationAnglesInRad)) / (4 * np.pi * d ** 4)
-    magDpTorque[index, :] = miu0 * magneticMomentOfOneRaft ** 2 * (
-            3 * np.cos(orientationAnglesInRad) * np.sin(orientationAnglesInRad)) / (4 * np.pi * d ** 3)
+    # magDpEnergy[index, :] = \
+    #     miu0 * magneticMomentOfOneRaft ** 2 * (1 - 3 * (np.cos(orientationAnglesInRad) ** 2)) / (4 * np.pi * d ** 3)
+    magDpForceOnAxis[index, :] = \
+        3 * miu0 * magneticMomentOfOneRaft ** 2 * (1 - 3 * (np.cos(orientationAnglesInRad) ** 2)) / (4 * np.pi * d ** 4)
+    magDpForceOffAxis[index, :] = \
+        3 * miu0 * magneticMomentOfOneRaft ** 2 * (2 * np.cos(orientationAnglesInRad) *
+                                                   np.sin(orientationAnglesInRad)) / (4 * np.pi * d ** 4)
+    magDpTorque[index, :] = \
+        miu0 * magneticMomentOfOneRaft ** 2 * (3 * np.cos(orientationAnglesInRad) *
+                                               np.sin(orientationAnglesInRad)) / (4 * np.pi * d ** 3)
 
-# magnetic force at 1um(attrationZeroCutoff) should have no attraction, due to wall-wall repulsion. Treat it similarly as capillary cutoff
+# magnetic force at 1um(attractionZeroCutoff) should have no attraction, due to wall-wall repulsion.
+# Treat it similarly as capillary cutoff
 attractionZeroCutoff = 0  # unit: micron
 mask = np.concatenate((magDpForceOnAxis[:attractionZeroCutoff, :] < 0,
                        np.zeros((magDpForceOnAxis.shape[0] - attractionZeroCutoff, magDpForceOnAxis.shape[1]),
