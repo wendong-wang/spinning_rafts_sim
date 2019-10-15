@@ -497,22 +497,26 @@ lubA = x * (-0.285524 * x + 0.095493 * x * np.log(x) + 0.106103) / RforCoeff  # 
 lubB = ((0.0212764 * (- np.log(x)) + 0.157378) * (- np.log(x)) + 0.269886) / (
         RforCoeff * (- np.log(x)) * ((- np.log(x)) + 6.0425) + 6.32549)  # unit: 1/um
 
-# lubC = ( (-0.0212758 * (- np.log(x)) - 0.089656) * (- np.log(x)) + 0.0480911) / (RforCoeff**2 * ((- np.log(x)) * ((- np.log(x)) + 6.0425) + 6.32549) ) # unit: 1/um^2
+# lubC = ((-0.0212758 * (- np.log(x)) - 0.089656) * (- np.log(x)) + 0.0480911) / \
+#        (RforCoeff ** 2 * ((- np.log(x)) * ((- np.log(x)) + 6.0425) + 6.32549))  # unit: 1/um^2
 
-# lubD = (0.0579125 * (- np.log(x)) + 0.0780201) / (RforCoeff**2 * ((- np.log(x)) * ((- np.log(x)) + 6.0425) + 6.32549) ) # unit: 1/um^2
+# lubD = (0.0579125 * (- np.log(x)) + 0.0780201) / \
+#        (RforCoeff ** 2 * ((- np.log(x)) * ((- np.log(x)) + 6.0425) + 6.32549))  # unit: 1/um^2
 
 lubG = ((0.0212758 * (- np.log(x)) + 0.181089) * (- np.log(x)) + 0.381213) / (
         RforCoeff ** 3 * ((- np.log(x)) * ((- np.log(x)) + 6.0425) + 6.32549))  # unit: 1/um^3
 
 lubC = - RforCoeff * lubG
 
-# lubH = (0.265258 * (- np.log(x)) + 0.357355) / (RforCoeff**3 * ((- np.log(x)) * ((- np.log(x)) + 6.0425) + 6.32549) ) # unit: 1/um^3
+# lubH = (0.265258 * (- np.log(x)) + 0.357355) / \
+#        (RforCoeff ** 3 * ((- np.log(x)) * ((- np.log(x)) + 6.0425) + 6.32549))  # unit: 1/um^3
 
 # lubCoeffCombined = np.column_stack((lubA,lubB,lubC,lubD,lubG,lubH))
+
 # %% simulation of the pairwise data first,
 # all calculations are done in SI numbers, and only in drawing are the variables converted to pixel unit
-#
-## check the dipole orientation and capillary orientation
+
+# check the dipole orientation and capillary orientation
 eeDistanceForPlotting = 70
 fig, ax = plt.subplots(ncols=2, nrows=1)
 ax[0].plot(capillaryForcesDistancesAsRows[eeDistanceForPlotting, :], 'o-',
