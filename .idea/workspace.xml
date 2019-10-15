@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4218008b-0feb-4f20-926a-aa52f8ba58ac" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/spinning_rafts_simulation_code.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/spinning_rafts_simulation_code.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation_rafts_pairwise.py" beforeDir="false" afterPath="$PROJECT_DIR$/simulation_rafts_pairwise.py" afterDir="false" />
-    </list>
+    <list default="true" id="4218008b-0feb-4f20-926a-aa52f8ba58ac" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,6 +110,7 @@
       <workItem from="1571128637193" duration="243000" />
       <workItem from="1571131129636" duration="1557000" />
       <workItem from="1571146910868" duration="1761000" />
+      <workItem from="1571152388352" duration="98000" />
     </task>
     <servers />
   </component>
