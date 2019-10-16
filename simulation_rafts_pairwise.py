@@ -70,6 +70,7 @@ def draw_rafts_rh_coord(img_bgr, rafts_loc, rafts_radii, num_of_rafts):
 def draw_b_field_in_rh_coord(img_bgr, b_orient):
     """
     draw the direction of B-field in right-handed xy coordinate
+    :type img_bgr: numpy array
     """
 
     output_img = img_bgr
@@ -325,8 +326,9 @@ def fft_general(sampling_rate, signal):
     """
     given sampling rate and signal,
     output frequency vector and one-sided power spectrum
-    sampling_rate: unit Hz
-    signal: numpy array
+    :type signal: numpy array
+    :type sampling_rate: float
+
     """
     #    sampling_interval = 1/sampling_rate # unit s
     #    times = np.linspace(0,sampling_length*sampling_interval, sampling_length)
