@@ -25,6 +25,11 @@ def draw_rafts_lh_coord(img_bgr, rafts_loc, rafts_radii, num_of_rafts):
     draw circles in the left-handed coordinate system of openCV
     positive x is pointing right
     positive y is pointing down
+    :param numpy array img_bgr: input bgr image in numpy array
+    :param numpy array rafts_loc: locations of the rafts
+    :param numpy array rafts_radii: radii of the rafts
+    :param int num_of_rafts: num of rafts
+    :return: bgr image file
     """
 
     circle_thickness = int(2)
@@ -43,10 +48,11 @@ def draw_rafts_rh_coord(img_bgr, rafts_loc, rafts_radii, num_of_rafts):
     draw circles in the right-handed coordinate system
     x pointing right
     y pointing up
-    :type num_of_rafts: integer
-    :type rafts_radii: integer
-    :type rafts_loc: numpy array
-    :type img_bgr: numpy array
+    :param numpy array img_bgr: input bgr image in numpy array
+    :param numpy array rafts_loc: locations of the rafts
+    :param numpy array rafts_radii: radii of the rafts
+    :param int num_of_rafts: num of rafts
+    :return: bgr image file
     """
     circle_thickness = int(2)
     circle_color = (0, 0, 255)  # openCV: BGR
@@ -70,7 +76,9 @@ def draw_rafts_rh_coord(img_bgr, rafts_loc, rafts_radii, num_of_rafts):
 def draw_b_field_in_rh_coord(img_bgr, b_orient):
     """
     draw the direction of B-field in right-handed xy coordinate
-    :type img_bgr: numpy array
+    :param numpy array img_bgr: bgr image file
+    :param float b_orient: orientation of the magnetic B-field, in deg
+    :return: bgr image file
     """
 
     output_img = img_bgr
@@ -88,6 +96,12 @@ def draw_raft_orientations_lh_coord(img_bgr, rafts_loc, rafts_ori, rafts_radii, 
     """
     draw lines to indicate the dipole orientation of each raft,
     as indicated by rafts_ori, in left-handed coordinate system
+    :param numpy array img_bgr: the image in bgr format
+    :param numpy array rafts_loc: the locations of rafts
+    :param numpy array rafts_ori: the orientation of rafts, in deg
+    :param numpy array rafts_radii: radii of the rafts
+    :param int num_of_rafts: num of rafts
+    :return: bgr image file
     """
 
     line_thickness = int(2)
@@ -108,6 +122,12 @@ def draw_raft_orientations_rh_coord(img_bgr, rafts_loc, rafts_ori, rafts_radii, 
     """
     draw lines to indicate the dipole orientation of each raft,
     as indicated by rafts_ori, in a right-handed coordinate system
+    :param numpy array img_bgr: the image in bgr format
+    :param numpy array rafts_loc: the locations of rafts
+    :param numpy array rafts_ori: the orientation of rafts, in deg
+    :param numpy array rafts_radii: radii of the rafts
+    :param int num_of_rafts: num of rafts
+    :return: bgr image file
     """
 
     line_thickness = int(2)
@@ -131,6 +151,15 @@ def draw_cap_peaks_lh_coord(img_bgr, rafts_loc, rafts_ori, raft_sym, cap_offset,
     """
     draw lines to indicate the capillary peak positions
     in left-handed coordinate system
+    :param numpy array img_bgr: the image in bgr format
+    :param numpy array rafts_loc: the locations of rafts
+    :param numpy array rafts_ori: the orientation of rafts, in deg
+    :param int raft_sym: the symmetry of raft
+    :param int cap_offset: the angle between the dipole direction
+    and the first capillary peak, in deg
+    :param numpy array rafts_radii: radii of the rafts
+    :param int num_of_rafts: num of rafts
+    :return bgr image file
     """
 
     line_thickness = int(2)
@@ -154,6 +183,15 @@ def draw_cap_peaks_rh_coord(img_bgr, rafts_loc, rafts_ori, raft_sym, cap_offset,
     """
     draw lines to indicate the capillary peak positions
     in right-handed coordinate
+    :param numpy array img_bgr: the image in bgr format
+    :param numpy array rafts_loc: the locations of rafts
+    :param numpy array rafts_ori: the orientation of rafts, in deg
+    :param int raft_sym: the symmetry of raft
+    :param int cap_offset: the angle between the dipole direction
+    and the first capillary peak, in deg
+    :param numpy array rafts_radii: radii of the rafts
+    :param int num_of_rafts: num of rafts
+    :return: bgr image file
     """
 
     line_thickness = int(2)
@@ -179,6 +217,10 @@ def draw_raft_number(img_bgr, rafts_loc, num_of_rafts):
     """
     draw the raft number at the center of the rafts
     in the left-handed coordinate
+    :param numpy array img_bgr: the image in bgr format
+    :param numpy array rafts_loc: the locations of rafts
+    :param int num_of_rafts: num of rafts
+    :return: bgr image file
     """
 
     font_face = cv.FONT_HERSHEY_SIMPLEX
@@ -199,6 +241,10 @@ def draw_raft_num_rh_coord(img_bgr, rafts_loc, num_of_rafts):
     """
     draw the raft number at the center of the rafts
     in the right-handed coordinate
+    :param numpy array img_bgr: the image in bgr format
+    :param numpy array rafts_loc: the locations of rafts
+    :param int num_of_rafts: num of rafts
+    :return: bgr image file
     """
 
     font_face = cv.FONT_HERSHEY_SIMPLEX
@@ -220,6 +266,13 @@ def draw_raft_num_rh_coord(img_bgr, rafts_loc, num_of_rafts):
 def draw_frame_info(img_bgr, time_step_num, distance, orientation, b_field_direction, rel_orient):
     """
     draw information on the output frames
+    :param numpy array img_bgr: input bgr image
+    :param int time_step_num: current step number
+    :param float distance: separation distance between two rafts
+    :param float orientation: orientation of the raft 0 (same for all rafts)
+    :param float b_field_direction: orientation of the B-field
+    :param float rel_orient: relative orientation phi_ji
+    :return: bgr image
     """
     font_face = cv.FONT_HERSHEY_SIMPLEX
     font_scale = 0.5
@@ -269,8 +322,10 @@ def draw_frame_info(img_bgr, time_step_num, distance, orientation, b_field_direc
 
 def draw_voronoi_rh_coord(img_bgr, rafts_loc):
     """
-    draw Voronoi patterns
-    in the right-handed coordiantes
+    draw Voronoi patterns in the right-handed coordiantes
+    :param numpy array img_bgr: the image in bgr format
+    :param numpy array rafts_loc: the locations of rafts
+    :return: bgr image file
     """
     height, width, _ = img_bgr.shape
     points = rafts_loc
@@ -308,27 +363,13 @@ def draw_voronoi_rh_coord(img_bgr, rafts_loc):
     return output_img
 
 
-def map_angles_from0to360(angle_in_deg):
-    """
-    map the angleInDeg to the interval [0, 360)
-        not in use anymore.
-        % modulo operation just do the trick in one line!!
-    """
-    while angle_in_deg >= 360.0:
-        angle_in_deg = angle_in_deg - 360.0
-    while angle_in_deg < 0.0:
-        angle_in_deg = angle_in_deg + 360.0
-
-    return angle_in_deg
-
-
 def fft_general(sampling_rate, signal):
     """
     given sampling rate and signal,
     output frequency vector and one-sided power spectrum
-    :type signal: numpy array
-    :type sampling_rate: float
-
+    :param numpy array signal: the input signal in 1D array
+    :param float sampling_rate: sampling rate in Hz
+    :return: frequencies, one-sided power spectrum, both numpy array
     """
     #    sampling_interval = 1/sampling_rate # unit s
     #    times = np.linspace(0,sampling_length*sampling_interval, sampling_length)
@@ -347,6 +388,8 @@ def adjust_phases(phases_input):
     adjust the phases to get rid of the jump of 360
     when it crosses from -180 to 180, or the reverse
     adjust single point anomaly.
+    :param numpy array phases_input: initial phases, in deg
+    :return: ajusted phases, in deg
     """
     phase_diff_threshold = 200
 
@@ -525,26 +568,26 @@ lubC = - RforCoeff * lubG
 # all calculations are done in SI numbers, and only in drawing are the variables converted to pixel unit
 
 # check the dipole orientation and capillary orientation
-eeDistanceForPlotting = 70
-fig, ax = plt.subplots(ncols=2, nrows=1)
-ax[0].plot(capillaryForcesDistancesAsRows[eeDistanceForPlotting, :], 'o-',
-           label='capillary force')  # 0 deg is the peak-peak alignment - attraction.
-ax[0].plot(magDpForceOnAxis[eeDistanceForPlotting, :], 'o-',
-           label='magnetic force')  # 0 deg is the dipole-dipole attraction
-ax[0].set_xlabel('angle')
-ax[0].set_ylabel('force (N)')
-ax[0].legend()
-ax[0].set_title('force at eeDistance = {}um, capillary peak offset angle = {}deg'.format(eeDistanceForPlotting,
-                                                                                         capillaryPeakOffset))
-ax[1].plot(capillaryTorquesDistancesAsRows[eeDistanceForPlotting, :], 'o-',
-           label='capillary torque')  # 0 deg is the peak-peak alignment - attraction.
-ax[1].plot(magDpTorque[eeDistanceForPlotting, :], 'o-',
-           label='magnetic torque')  # 0 deg is the dipole-dipole attraction
-ax[1].set_xlabel('angle')
-ax[1].set_ylabel('torque (N.m)')
-ax[1].legend()
-ax[1].set_title('torque at eeDistance = {}um, capillary peak offset angle = {}deg'.format(eeDistanceForPlotting,
-                                                                                          capillaryPeakOffset))
+# eeDistanceForPlotting = 70
+# fig, ax = plt.subplots(ncols=2, nrows=1)
+# ax[0].plot(capillaryForcesDistancesAsRows[eeDistanceForPlotting, :], 'o-',
+#            label='capillary force')  # 0 deg is the peak-peak alignment - attraction.
+# ax[0].plot(magDpForceOnAxis[eeDistanceForPlotting, :], 'o-',
+#            label='magnetic force')  # 0 deg is the dipole-dipole attraction
+# ax[0].set_xlabel('angle')
+# ax[0].set_ylabel('force (N)')
+# ax[0].legend()
+# ax[0].set_title('force at eeDistance = {}um, capillary peak offset angle = {}deg'.format(eeDistanceForPlotting,
+#                                                                                          capillaryPeakOffset))
+# ax[1].plot(capillaryTorquesDistancesAsRows[eeDistanceForPlotting, :], 'o-',
+#            label='capillary torque')  # 0 deg is the peak-peak alignment - attraction.
+# ax[1].plot(magDpTorque[eeDistanceForPlotting, :], 'o-',
+#            label='magnetic torque')  # 0 deg is the dipole-dipole attraction
+# ax[1].set_xlabel('angle')
+# ax[1].set_ylabel('torque (N.m)')
+# ax[1].legend()
+# ax[1].set_title('torque at eeDistance = {}um, capillary peak offset angle = {}deg'.format(eeDistanceForPlotting,
+#                                                                                           capillaryPeakOffset))
 
 # plot the various forces and look for the transition rps
 # densityOfWater = 1e-15 # unit conversion: 1000 kg/m^3 = 1e-15 kg/um^3
@@ -574,14 +617,15 @@ listOfVariablesToSave = ['numOfRafts', 'magneticFieldStrength', 'magneticFieldRo
                          'timeTotal', 'outputImageSeq', 'outputVideo', 'outputFrameRate', 'intervalBetweenFrames',
                          'raftLocations', 'raftOrientations', 'raftRadii', 'raftRotationSpeedsInRad',
                          'raftRelativeOrientationInDeg',
-                         'velocityTorqueCouplingTerm', 'magDipoleForceOffAxisTerm', 'magDipoleForceOnAxisTerm',
-                         'capillaryForceTerm', 'hydrodynamicForceTerm', 'stochasticTerm', 'forceCurvatureTerm',
-                         'wallRepulsionTerm', 'magneticFieldTorqueTerm', 'magneticDipoleTorqueTerm',
-                         'capillaryTorqueTerm', 'currentStepNum', 'currentFrameBGR']
+                         # 'velocityTorqueCouplingTerm', 'magDipoleForceOffAxisTerm', 'magDipoleForceOnAxisTerm',
+                         # 'capillaryForceTerm', 'hydrodynamicForceTerm', 'stochasticTerm', 'forceCurvatureTerm',
+                         # 'wallRepulsionTerm', 'magneticFieldTorqueTerm', 'magneticDipoleTorqueTerm',
+                         # 'capillaryTorqueTerm',
+                         'currentStepNum', 'currentFrameBGR']
 # small number threshold
 # eps = 1e-13
 
-# constant of proportionalities
+# constants of proportionality
 cm = 1  # coefficient for the magnetic force term
 cc = 1  # coefficient for the capillary force term
 ch = 1  # coefficient for the hydrodynamic force term
@@ -616,7 +660,7 @@ lastOmegaOfPreviousSpinSpeeds = np.zeros(numOfRafts)
 firstSpinSpeedFlag = 1
 
 timeStepSize = 1e-3  # unit: s
-numOfTimeSteps = 50000
+numOfTimeSteps = 10000
 timeTotal = timeStepSize * numOfTimeSteps
 
 lubEqThreshold = 15  # unit micron, if the eeDistance is below this value, use lubrication equations
@@ -661,9 +705,9 @@ def funct_drdt_dalphadt(t, raft_loc_orient):
     stochastic_torque_term = np.zeros(numOfRafts)
 
     # stochastic torque term
-    stochastic_torque = omegaBField * np.random.normal(0, stdOfTorqueNoise, 1)
+    # stochastic_torque = omegaBField * np.random.normal(0, stdOfTorqueNoise, 1)
     # unit: N.m, assuming omegaBField is unitless
-    stochastic_torque_term = np.ones(numOfRafts) * stochastic_torque * 1e6 / (8 * piMiuR * R ** 2)
+    # stochastic_torque_term = np.ones(numOfRafts) * stochastic_torque * 1e6 / (8 * piMiuR * R ** 2)
     # unit: 1/s assuming omegaBField is unitless.
 
     # loop for torques and calculate raft_spin_speeds_in_rads
@@ -843,17 +887,18 @@ def funct_drdt_dalphadt(t, raft_loc_orient):
                                                           magnetic_field_torque * 1e6 \
                                                           * rji_unitized_cross_z / miu  # unit: um/s
 
-            if rji_eeDist >= lubEqThreshold and currentStepNum > 1:
-                prev_drdt = (raftLocations[raftID, currentStepNum, :] -
-                             raftLocations[raftID, currentStepNum - 1, :]) / timeStepSize
-                stochastic_force_term[raftID, currentStepNum, :] = stochastic_force_term[raftID, currentStepNum, :] \
-                                                                   + np.sqrt(prev_drdt[0] ** 2 + prev_drdt[1] ** 2) * \
-                                                                   np.random.normal(0, stdOfFluctuationTerm, 1) \
-                                                                   * rjiUnitized
+            # if rji_ee_dist >= lubEqThreshold and currentStepNum > 1:
+            #     prev_drdt = (raftLocations[raft_id, currentStepNum, :] -
+            #                  raftLocations[raft_id, currentStepNum - 1, :]) / timeStepSize
+            #     stochastic_force_term[raft_id, currentStepNum, :] = stochastic_force_term[raft_id,
+            #                                                                               currentStepNum, :] \
+            #                                                        + np.sqrt(prev_drdt[0] ** 2
+            #                                                                  + prev_drdt[1] ** 2) * \
+            #                                                        np.random.normal(0, stdOfFluctuationTerm, 1) \
+            #                                                        * rji_unitized
 
             if rji_ee_dist < 0:
-                wall_repulsion_term[raft_id, :] = wall_repulsion_term[raft_id, :] + wallRepulsionForce / (
-                        6 * piMiuR) * (
+                wall_repulsion_term[raft_id, :] = wall_repulsion_term[raft_id, :] + wallRepulsionForce / (6 * piMiuR) * (
                                                           -rji_ee_dist / R) * rji_unitized
 
         # update drdr and dalphadt
@@ -1385,194 +1430,3 @@ ax.legend()
 plt.show()
 
 # %% code to be deleted:
-
-for raftID in np.arange(numOfRafts):
-    # raftID = 0
-    R = raftRadii[raftID]  # unit: micron
-    ri = raftLocations[raftID, currentStepNum, :]  # unit: micron
-
-    d_ri = np.zeros(2)
-    d_alpha = np.zeros(1)
-
-    # force cuvature term
-    if forceDueToCurvature != 0:
-        ricenter = centerOfArena - ri
-        ricenterNorm = np.sqrt(ricenter[0] ** 2 + ricenter[1] ** 2)
-        ricenterUnitized = ricenter / ricenterNorm
-        forceCurvatureTerm[raftID, currentStepNum, :] = forceDueToCurvature / (6 * piMiuR) * ricenterUnitized
-
-    # magnetic field torque:
-    magneticFieldTorque = magneticFieldStrength * magneticMomentOfOneRaft * np.sin(
-        np.deg2rad(magneticFieldDirection - raftOrientations[raftID, currentStepNum]))  # unit: N.um
-    magneticFieldTorqueTerm[raftID, currentStepNum] = tb * magneticFieldTorque * 1e6 / (
-            8 * piMiuR * R ** 2)  # unit: 1/s
-
-    # looping over all neighbors of raft i; for pairwise or small number of rafts, just loop over all the rest of rafts
-
-    rji_eeDist_smallest = R;  # initialize
-    for neighborID in np.arange(numOfRafts):
-        if neighborID == raftID:
-            continue
-        rj = raftLocations[neighborID, currentStepNum, :]  # unit: micron
-        rji = ri - rj  # unit: micron
-        rjiNorm = np.sqrt(rji[0] ** 2 + rji[1] ** 2)  # unit: micron
-        rji_eeDist = rjiNorm - 2 * R  # unit: micron
-        rjiUnitized = rji / rjiNorm  # unit: micron
-        rjiUnitizedCrossZ = np.asarray((rjiUnitized[1], -rjiUnitized[0]))
-        phi_ji = map_angles_from0to360(np.arctan2(rji[1], rji[0]) * 180 / np.pi - raftOrientations[
-            raftID, currentStepNum])  # unit: deg; assuming both rafts's orientations are the same
-        raftRelativeOrientationInDeg[neighborID, raftID, currentStepNum] = phi_ji
-
-        # force terms:
-        if currentStepNum > 1:
-            omega = raftRotationSpeedsInRad[neighborID, currentStepNum - 1]
-        elif currentStepNum == 0:
-            if initialPositionMethod == 3 and firstSpinSpeedFlag == 0:
-                omega = lastOmegaOfPreviousSpinSpeeds[neighborID]
-            else:
-                omega = omegaBField
-
-        if rji_eeDist < 10000 and rji_eeDist >= lubEqThreshold:
-            magDipoleForceOnAxisTerm[raftID, currentStepNum, :] = magDipoleForceOnAxisTerm[raftID, currentStepNum,
-                                                                  :] + cm * magDpForceOnAxis[
-                                                                      int(rji_eeDist), int(phi_ji)] * rjiUnitized / (
-                                                                          6 * piMiuR)  # unit: um/s
-        elif rji_eeDist < lubEqThreshold and rji_eeDist >= 0:
-            magDipoleForceOnAxisTerm[raftID, currentStepNum, :] = magDipoleForceOnAxisTerm[raftID, currentStepNum,
-                                                                  :] + cm * lubA[
-                                                                      int(rji_eeDist * lubCoeffScaleFactor)] * \
-                                                                  magDpForceOnAxis[int(rji_eeDist), int(
-                                                                      phi_ji)] * rjiUnitized / miu  # unit: um/s
-        elif rji_eeDist < 0:
-            magDipoleForceOnAxisTerm[raftID, currentStepNum, :] = magDipoleForceOnAxisTerm[raftID, currentStepNum,
-                                                                  :] + cm * lubA[0] * magDpForceOnAxis[
-                                                                      0, int(phi_ji)] * rjiUnitized / miu  # unit: um/s
-
-        if rji_eeDist < 1000 and rji_eeDist >= lubEqThreshold:
-            capillaryForceTerm[raftID, currentStepNum, :] = capillaryForceTerm[raftID, currentStepNum, :] + cc * \
-                                                            capillaryForcesDistancesAsRows[
-                                                                int(rji_eeDist), int(phi_ji)] * rjiUnitized / (
-                                                                    6 * piMiuR)  # unit: um/s
-        elif rji_eeDist < lubEqThreshold and rji_eeDist >= 0:
-            capillaryForceTerm[raftID, currentStepNum, :] = capillaryForceTerm[raftID, currentStepNum, :] + cc * lubA[
-                int(rji_eeDist * lubCoeffScaleFactor)] * capillaryForcesDistancesAsRows[int(rji_eeDist), int(
-                phi_ji)] * rjiUnitized / miu  # unit: um/s
-        elif rji_eeDist < 0:
-            capillaryForceTerm[raftID, currentStepNum, :] = capillaryForceTerm[raftID, currentStepNum, :] + cc * lubA[
-                0] * capillaryForcesDistancesAsRows[0, int(phi_ji)] * rjiUnitized / miu  # unit: um/s
-
-        if rji_eeDist >= lubEqThreshold:
-            hydrodynamicForceTerm[raftID, currentStepNum, :] = hydrodynamicForceTerm[raftID, currentStepNum,
-                                                               :] + ch * 1e-6 * densityOfWater * omega ** 2 * R ** 7 * rji / rjiNorm ** 4 / (
-                                                                       6 * piMiuR)  # unit: um/s; 1e-6 is used to convert the implicit m to um in Newton in miu
-        elif rji_eeDist < lubEqThreshold and rji_eeDist >= 0:
-            hydrodynamicForceTerm[raftID, currentStepNum, :] = hydrodynamicForceTerm[raftID, currentStepNum, :] + ch * \
-                                                               lubA[int(rji_eeDist * lubCoeffScaleFactor)] * (
-                                                                       1e-6 * densityOfWater * omega ** 2 * R ** 7 / rjiNorm ** 3) * rjiUnitized / miu  # unit: um/s
-
-        if rji_eeDist < 10000 and rji_eeDist >= lubEqThreshold:
-            magDipoleForceOffAxisTerm[raftID, currentStepNum, :] = magDipoleForceOffAxisTerm[raftID, currentStepNum,
-                                                                   :] + magDpForceOffAxis[int(rji_eeDist), int(
-                phi_ji)] * rjiUnitizedCrossZ / (6 * piMiuR)
-        elif rji_eeDist < lubEqThreshold and rji_eeDist >= 0:
-            magDipoleForceOffAxisTerm[raftID, currentStepNum, :] = magDipoleForceOffAxisTerm[raftID, currentStepNum,
-                                                                   :] + lubB[int(rji_eeDist * lubCoeffScaleFactor)] * \
-                                                                   magDpForceOffAxis[int(rji_eeDist), int(
-                                                                       phi_ji)] * rjiUnitizedCrossZ / miu  # unit: um/s
-        elif rji_eeDist < 0:
-            magDipoleForceOffAxisTerm[raftID, currentStepNum, :] = magDipoleForceOffAxisTerm[raftID, currentStepNum,
-                                                                   :] + lubB[0] * magDpForceOffAxis[0, int(
-                phi_ji)] * rjiUnitizedCrossZ / miu  # unit: um/s
-
-        if rji_eeDist >= lubEqThreshold:
-            velocityTorqueCouplingTerm[raftID, currentStepNum, :] = velocityTorqueCouplingTerm[raftID, currentStepNum,
-                                                                    :] - R ** 3 * omega * rjiUnitizedCrossZ / (
-                                                                            rjiNorm ** 2)  # unit: um/s
-        elif rji_eeDist < lubEqThreshold and rji_eeDist >= 0:
-            velocityMagFdTorqueTerm[raftID, currentStepNum, :] = velocityMagFdTorqueTerm[raftID, currentStepNum, :] + \
-                                                                 lubC[int(
-                                                                     rji_eeDist * lubCoeffScaleFactor)] * magneticFieldTorque * 1e6 * rjiUnitizedCrossZ / miu  # unit: um/s
-        elif rji_eeDist < 0:
-            velocityMagFdTorqueTerm[raftID, currentStepNum, :] = velocityMagFdTorqueTerm[raftID, currentStepNum, :] + \
-                                                                 lubC[
-                                                                     0] * magneticFieldTorque * 1e6 * rjiUnitizedCrossZ / miu  # unit: um/s
-
-        #                if rji_eeDist >= lubEqThreshold and currentStepNum > 1:
-        #                    prev_drdt = (raftLocations[raftID,currentStepNum,:] -  raftLocations[raftID,currentStepNum-1,:]) / timeStepSize
-        #                    stochasticTerm[raftID, currentStepNum,:] =  stochasticTerm[raftID, currentStepNum,:] + np.sqrt(prev_drdt[0]**2 + prev_drdt[1]**2) * np.random.normal(0, stdOfFluctuationTerm, 1) * rjiUnitized
-
-        if rji_eeDist < 0:
-            wallRepulsionTerm[raftID, currentStepNum, :] = wallRepulsionTerm[raftID, currentStepNum, :] + (
-                -rji_eeDist) * rjiUnitized / timeStepSize
-
-        # torque terms:
-        if rji_eeDist < lubEqThreshold and rji_eeDist < rji_eeDist_smallest:
-            rji_eeDist_smallest = rji_eeDist
-            if rji_eeDist_smallest >= 0:
-                magneticFieldTorqueTerm[raftID, currentStepNum] = lubG[int(
-                    rji_eeDist_smallest)] * magneticFieldTorque * 1e6 / miu  # unit: 1/s
-            elif rji_eeDist_smallest < 0:
-                magneticFieldTorqueTerm[raftID, currentStepNum] = lubG[0] * magneticFieldTorque * 1e6 / miu  # unit: 1/s
-
-        if rji_eeDist < lubEqThreshold and rji_eeDist >= 0:
-            magneticFieldTorqueTerm[raftID, currentStepNum] = lubG[int(
-                rji_eeDist)] * magneticFieldTorque * 1e6 / miu  # unit: 1/s
-        elif rji_eeDist < 0:
-            magneticFieldTorqueTerm[raftID, currentStepNum] = lubG[0] * magneticFieldTorque * 1e6 / miu  # unit: 1/s
-
-        if rji_eeDist < 10000 and rji_eeDist >= 0:
-            magneticDipoleTorqueTerm[raftID, currentStepNum] = magneticDipoleTorqueTerm[raftID, currentStepNum] + tm * \
-                                                               magDpTorque[int(rji_eeDist), int(phi_ji)] * 1e6 / (
-                                                                       8 * piMiuR * R ** 2)
-        elif rji_eeDist < lubEqThreshold and rji_eeDist >= 0:
-            magneticDipoleTorqueTerm[raftID, currentStepNum] = magneticDipoleTorqueTerm[raftID, currentStepNum] + tm * \
-                                                               lubH[int(rji_eeDist * lubCoeffScaleFactor)] * \
-                                                               magDpTorque[int(rji_eeDist), int(
-                                                                   phi_ji)] * 1e6 / miu  # unit: 1/s
-        elif rji_eeDist < 0:
-            magneticDipoleTorqueTerm[raftID, currentStepNum] = magneticDipoleTorqueTerm[raftID, currentStepNum] + tm * \
-                                                               lubH[0] * magDpTorque[
-                                                                   0, int(phi_ji)] * 1e6 / miu  # unit: 1/s
-
-        if rji_eeDist < 1000 and rji_eeDist >= 0:
-            capillaryTorqueTerm[raftID, currentStepNum] = capillaryTorqueTerm[raftID, currentStepNum] + tc * \
-                                                          capillaryTorquesDistancesAsRows[
-                                                              int(rji_eeDist), int(phi_ji)] * 1e6 / (
-                                                                  8 * piMiuR * R ** 2)  # unit: 1/s
-        elif rji_eeDist < lubEqThreshold and rji_eeDist >= 0:
-            capillaryTorqueTerm[raftID, currentStepNum] = capillaryTorqueTerm[raftID, currentStepNum] + tc * lubH[
-                int(rji_eeDist * lubCoeffScaleFactor)] * capillaryTorquesDistancesAsRows[
-                                                              int(rji_eeDist), int(phi_ji)] * 1e6 / miu  # unit: 1/s
-        elif rji_eeDist < 0:
-            capillaryTorqueTerm[raftID, currentStepNum] = capillaryTorqueTerm[raftID, currentStepNum] + tc * lubH[0] * \
-                                                          capillaryTorquesDistancesAsRows[
-                                                              0, int(phi_ji)] * 1e6 / miu  # unit: 1/s
-
-    # update position
-    d_ri = (magDipoleForceOnAxisTerm[raftID, currentStepNum, :] + capillaryForceTerm[raftID, currentStepNum,
-                                                                  :] + hydrodynamicForceTerm[raftID, currentStepNum,
-                                                                       :] + magDipoleForceOffAxisTerm[raftID,
-                                                                            currentStepNum,
-                                                                            :] + velocityTorqueCouplingTerm[raftID,
-                                                                                 currentStepNum,
-                                                                                 :] + velocityMagFdTorqueTerm[raftID,
-                                                                                      currentStepNum,
-                                                                                      :] + stochasticTerm[raftID,
-                                                                                           currentStepNum,
-                                                                                           :] + wallRepulsionTerm[
-                                                                                                raftID, currentStepNum,
-                                                                                                :] + forceCurvatureTerm[
-                                                                                                     raftID,
-                                                                                                     currentStepNum,
-                                                                                                     :]) * timeStepSize
-
-    # update angles and raftRotationSpeedsInRad
-    raftRotationSpeedsInRad[raftID, currentStepNum] = (
-            magneticFieldTorqueTerm[raftID, currentStepNum] + magneticDipoleTorqueTerm[raftID, currentStepNum] +
-            capillaryTorqueTerm[raftID, currentStepNum])
-    d_alpha = raftRotationSpeedsInRad[raftID, currentStepNum] / np.pi * 180 * timeStepSize  # in deg before assembly
-
-    # store the location and orientation for the next time step
-    raftLocations[raftID, currentStepNum + 1, :] = raftLocations[raftID, currentStepNum, :] + d_ri
-    raftOrientations[raftID, currentStepNum + 1] = map_angles_from0to360(
-        raftOrientations[raftID, currentStepNum] + d_alpha)
